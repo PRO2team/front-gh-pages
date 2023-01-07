@@ -69,18 +69,28 @@ const Wishlist = () => {
     }
   };
 
-  return (
-    <div className="wishlist">
-      {services.map((service) => (
-        <Service
-          key={service.salonID}
-          service={service}
-          onDeleteHandle={(service) => onDeleteHandle(service)}
-          onBookHandle={(service) => onBookHandle(service)}
-        />
-      ))}
-    </div>
-  );
+  let servicesComponent = <></>;
+
+  if (services.length === 0) {
+    servicesComponent = (
+      <p className="settings__title--secondary">Your whishlist is empty</p>
+    );
+  } else {
+    servicesComponent = (
+      <div className="wishlist">
+        {services.map((service) => (
+          <Service
+            key={service.salonID}
+            service={service}
+            onDeleteHandle={(service) => onDeleteHandle(service)}
+            onBookHandle={(service) => onBookHandle(service)}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return servicesComponent;
 };
 
 export default Wishlist;
