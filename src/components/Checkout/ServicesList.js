@@ -10,18 +10,13 @@ const ServicesList = ({ services, salon, request }) => {
   const [servicesList, setServicesList] = useState(services);
   const [note, setNote] = useState("");
   const inputRef = useRef();
-  console.log("Check");
-  console.log(services);
-  console.log(salon);
 
   const AddNote = (event) => {
     event.preventDefault();
     setNote(inputRef.current.value);
-    console.log(note);
     request(inputRef.current.value);
   };
 
-  console.log(salon.salonPicture);
   return (
     <div className="service_list">
       <h1 className="service_list__maintitle">Checkout</h1>

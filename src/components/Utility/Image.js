@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
+const Image = ({ data, ...props }) => {
+  const [defaultPicture, setDefaultPicture] = useState("");
 
-const Image = ({data, ...props }) => {
-    const [defaultPicture,setDefaultPicture] = useState('');
-
-    if(data===null){
-        data = defaultPicture;
-    }
-return(
+  if (data === null) {
+    data = defaultPicture;
+  }
+  return (
     <>
-{(data!==null&&data!==undefined)?
-(<img {...props} src={`data:image/jpeg;base64,${data}`} />):
-(<p> </p>)}
-</>
-)
-
-}
+      {data !== null && data !== undefined ? (
+        <img {...props} src={`data:image/jpeg;base64,${data}`} />
+      ) : (
+        <p> </p>
+      )}
+    </>
+  );
+};
 export default Image;

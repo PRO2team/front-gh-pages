@@ -110,7 +110,7 @@
     gap: 9.6rem;
     padding: 2.4rem;
     align-items: center;
-    width:100%;
+    width: 100%;
 
     &:not(:last-child) {
       border-bottom: 1px solid rgba($color-grey-dark-3, 0.1);
@@ -118,7 +118,7 @@
 
     &__title {
       font-size: 1.8rem;
-      width:20rem;
+      width: 20rem;
     }
 
     &__time {
@@ -127,7 +127,7 @@
       font-size: 1.8rem;
       color: $primary-color-dark;
       font-weight: 700;
-      width:20rem;
+      width: 20rem;
     }
 
     &__cost {
@@ -187,7 +187,7 @@
     justify-content: center;
     align-items: center;
     padding: 2.4rem;
-    width:80rem;
+    width: 80rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid rgba($color-grey-dark-3, 0.1);
@@ -196,7 +196,7 @@
 
   &__title {
     font-size: 1.8rem;
-    width:30rem;
+    width: 30rem;
   }
 
   &__info {
@@ -205,13 +205,13 @@
     gap: 0.5rem;
     font-size: 1.2rem;
     color: $color-grey-dark-2;
-    idth:20rem;
+    idth: 20rem;
   }
 
   &__buttons {
     display: flex;
     gap: 1.2rem;
-    width:20rem;
+    width: 20rem;
   }
 
   &__book {
@@ -249,6 +249,136 @@
       background-color: $color-red-dark;
       transform: scale(1.1);
       box-shadow: 0 1rem 1rem rgba($color-black, 0.1);
+    }
+  }
+}
+
+.settings {
+  background-color: $color-white;
+  width: 60%;
+  margin: 9.6rem auto;
+  padding: 4.8rem;
+  box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+
+  &__field {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    gap: 1.2rem;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 3.2rem;
+  }
+
+  &__error {
+    font-size: 1.8rem;
+    color: $color-error;
+  }
+
+  &__error + .input__container .register__icon {
+    color: $color-error;
+  }
+
+  .input__radio {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.8rem;
+
+    .radio__container {
+      display: flex;
+      gap: 1.2rem;
+    }
+  }
+
+  &__input {
+    font: inherit;
+    font-size: 1.8rem;
+    padding: 1.2rem 4.8rem;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid $color-grey-dark;
+    transition: $transition-normal;
+    width: 70%;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $primary-color-dark;
+    }
+
+    &:focus + .login__icon {
+      color: $secondary-color-dark;
+    }
+
+    &:hover + .login__icon {
+      transform: scale(0.9);
+    }
+
+    &--error {
+      font: inherit;
+      font-size: 1.8rem;
+      padding: 1.2rem 4.8rem;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid $color-grey-dark;
+      transition: $transition-normal;
+      border: 2px solid $color-error;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+    border: none;
+    background-color: $primary-color;
+    padding: 1.2rem 2.4rem;
+    font-size: 1.8rem;
+    color: white;
+    font-weight: 700;
+    border-radius: 12px;
+    transition: $transition-normal;
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    margin-bottom: 2.4rem;
+    line-height: 1.7;
+
+    &:hover {
+      background-color: $primary-color-dark;
+      transform: translateY(-0.5rem);
+      box-shadow: 0 0.5rem 2rem rgba($color-black, 0.2);
+    }
+
+    &--register {
+      margin-top: 2.4rem;
+    }
+
+    &--link {
+      cursor: pointer;
+      border: none;
+      background-color: $secondary-color;
+      padding: 1.2rem 2.4rem;
+      font-size: 1.8rem;
+      color: $color-grey-dark-3;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: $transition-normal;
+      box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+      margin-bottom: 1.2rem;
+      text-align: center;
+      text-decoration: none;
+      line-height: 1.7;
+
+      &:hover {
+        background-color: $secondary-color-dark;
+        transform: translateY(-0.5rem);
+        box-shadow: 0 0.5rem 2rem rgba($color-black, 0.2);
+        color: $color-white;
+      }
     }
   }
 }

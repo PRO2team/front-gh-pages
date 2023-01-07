@@ -52,6 +52,7 @@ const Profile = () => {
   let userId = auth?.user;
   const [userData, setUserData] = useState({});
   const [appointments, setAppointments] = useState([]);
+
   useEffect(() => {
     async function getUser(userId) {
       const userGetRequest = {
@@ -60,14 +61,13 @@ const Profile = () => {
       };
 
       const response = await fetch(
-        globalUrls.BASE_URL + "/api/Accounts/" + userId
+        globalUrls.BASE_URL + "/api/Accounts/" + userId,
+        userGetRequest
       );
 
       const data = await response.json();
 
       if (response.status === 200) {
-        console.log(response.status);
-        console.log(data);
         setUserData(data);
       }
     }
@@ -76,7 +76,6 @@ const Profile = () => {
 
   useEffect(() => {
     if (userData !== null) {
-      console.log(userData);
       setAppointments(userData.appointments);
     }
   }, [userData]);
@@ -192,7 +191,7 @@ const Profile = () => {
   } else if (tabID === 3) {
     profileComponent = <Support />;
   } else if (tabID === 4) {
-    profileComponent = <Settings />;
+    profileComponent = <Settings user={userData} />;
   }
 
   return (

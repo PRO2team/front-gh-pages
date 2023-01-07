@@ -24,12 +24,8 @@ const Wishlist = () => {
       );
 
       const data = await response.json();
-      console.log(data);
-      console.log(response.status);
 
       if (response.status === 200) {
-        console.log(response.status);
-        console.log(data);
         setServices(data);
       }
     }

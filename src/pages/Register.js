@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import { useRegisterFormValidator } from "../components/PageRegister/hooks/useRegisterFormValidator";
 

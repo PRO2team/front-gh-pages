@@ -15,7 +15,6 @@ const Service = () => {
 
   const [service, setService] = useState("");
 
-  console.log(service);
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
