@@ -30,11 +30,11 @@ function App() {
     <>
       <Navbar />
       <Routes>
-          <Route path="/front-gh-pages/index.html" element={<Home />} />
+          <Route path="*" element={<Home />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path=".*" element={<NotFound />} />
           <Route path="/business" element={<ForBussiness />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<Faq />} />
