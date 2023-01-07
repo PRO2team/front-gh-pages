@@ -178,12 +178,48 @@ const Profile = () => {
     AppointmentsActual = appointments.filter(isToday);
     AppointmentsOld = appointments.filter(isNotToday);
 
+    let appointmentsActualComponent = <></>;
+    if (AppointmentsActual.length === 0) {
+      appointmentsActualComponent = (
+        <div>
+          <h2 className="profile__title">You don't have appointments!</h2>
+        </div>
+      );
+    } else {
+      appointmentsActualComponent = (
+        <div>
+          <h2 className="profile__title">Your appointments</h2>
+          <AppointmentList
+            appointments={AppointmentsActual}
+            isHistory={false}
+          />
+        </div>
+      );
+    }
+
+    let appointmentsOldComponent = <></>;
+    if (AppointmentsOld.length === 0) {
+      appointmentsOldComponent = (
+        <div>
+          <h2 className="profile__title">You have never made appointments!</h2>
+        </div>
+      );
+    } else {
+      appointmentsOldComponent = (
+        <div>
+          <h2 className="profile__title">Your appointments</h2>
+          <AppointmentList
+            appointments={AppointmentsActual}
+            isHistory={false}
+          />
+        </div>
+      );
+    }
+
     profileComponent = (
       <div>
-        <h2 className="profile__title">Your appointments</h2>
-        <AppointmentList appointments={AppointmentsActual} isHistory={false} />
-        <h2 className="profile__title">History of appointments</h2>
-        <History appointments={AppointmentsOld} isHistory={true} />
+        {appointmentsActualComponent}
+        {appointmentsOldComponent}
       </div>
     );
   } else if (tabID === 2) {
