@@ -6,6 +6,7 @@ import Tab from "../components/PageProfile/Tab";
 import AppointmentList from "../components/PageProfile/AppointmentList";
 import History from "../components/PageProfile/History";
 import Wishlist from "../components/PageProfile/Wishlist";
+import Settings from "../components/PageProfile/Settings";
 
 import "../sass/components/profile.scss";
 
@@ -45,11 +46,6 @@ const appointments = [
   { id: 2, title: "Test2", date: "2022-12-30", time: "10:00", cost: "200 zl" },
   { id: 3, title: "Test3", date: "2023-02-10", time: "10:00", cost: "200 zl" },
   { id: 4, title: "Test4", date: "2023-01-04", time: "10:00", cost: "200 zl" },
-];
-
-const servicesFavourites = [
-  { id: 1, title: "Test", address: "Ul. Koszykowa 86", number: "+48510921253" },
-  { id: 2, title: "Tes2", address: "Ul. Koszykowa 86", number: "+48510921253" },
 ];
 
 let AppointmentsActual = [];
@@ -189,7 +185,7 @@ const Profile = () => {
   } else if (tabID === 3) {
     profileComponent = <div>Support</div>;
   } else if (tabID === 4) {
-    profileComponent = <div>Settings</div>;
+    profileComponent = <Settings />;
   }
 
   return (
