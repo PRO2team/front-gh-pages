@@ -2,7 +2,7 @@ import React from "react";
 import style from "../../sass/components/service.module.scss";
 import Image from "../Utility/Image";
 
-const Amnenity = (props) => {
+const Amentity = (props) => {
   const data = props.amentity.icon.bytes;
   return (
     <div className={style.bonus}>
@@ -13,4 +13,4 @@ const Amnenity = (props) => {
   );
 };
 
-export default Amnenity;
+export default Amentity;
