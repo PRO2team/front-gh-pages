@@ -13,5 +13,5 @@ export default {
   CONTACT_APPLICATION_URL: BASE_URL + "/api/Contact/application",
   APPOINTMENT_CANCEL_URL: BASE_URL + "/api/Appointment/cancel",
   ACCOUNTS_WISHLIST_URL: BASE_URL + "/api/Accounts/",
-  GET_SALONS_URL: BASE_URL +  "/api/Salons/"
+  GET_SALONS_URL: BASE_URL + "/api/Salons/",
 };

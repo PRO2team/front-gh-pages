@@ -57,7 +57,10 @@ const Login = () => {
     };
 
     const fetchPost = async () => {
-      const response = await fetch(globalUrls.LOGIN_URL, requestOptions);
+      const response = await fetch(
+        globalUrls.BASE_URL + "/api/Accounts/login",
+        requestOptions
+      );
       const data = await response.json();
       if (response.status === 200) {
         const accessToken = data?.accessToken;

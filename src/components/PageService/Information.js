@@ -7,7 +7,6 @@ import Image from "../Utility/Image";
 import useAuth from "../hooks/useAuth";
 
 function getTime(time) {
-
   var date = new Date(Date.parse(time));
   if (date.getMinutes() === 0) {
     return date.getHours() + ":" + date.getMinutes() + 0;
@@ -49,7 +48,8 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalUrls.DELETE_FROM_WISHLIST_URL +
+      globalUrls.BASE_URL +
+        "/api/Accounts/favourites/" +
         userId +
         "/" +
         props.item.salonID,
@@ -70,7 +70,8 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalUrls.DELETE_FROM_WISHLIST_URL +
+      globalUrls.BASE_URL +
+        "/api/Accounts/favourites/" +
         userId +
         "/" +
         props.item.salonID,
@@ -95,7 +96,8 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalUrls.DELETE_FROM_WISHLIST_URL +
+      globalUrls.BASE_URL +
+        "/api/Accounts/favourites/" +
         userId +
         "/" +
         props.item.salonID,
@@ -116,7 +118,7 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalUrls.ACCOUNTS_WISHLIST_URL + userId + "/favourites"
+      globalUrls.BASE_URL + "/api/Accounts/favourites/" + userId + "/favourites"
     );
 
     const data = await response.json();
@@ -219,7 +221,7 @@ const Information = (props) => {
         openServices={openServices}
         setOpenServices={setOpenServices}
       />
-      </div>
+    </div>
   );
 };
 

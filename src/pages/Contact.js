@@ -29,7 +29,10 @@ const Contact = () => {
   const fetchPost = async (data) => {
     const request = fetchPostRequest(data);
 
-    const response = await fetch(globalUrls.CONTACT_URL, request);
+    const response = await fetch(
+      globalUrls.BASE_URL + "/api/Contact/contact",
+      request
+    );
 
     const dataValue = await response.text();
     if (response.status === 200) {

@@ -20,7 +20,7 @@ const AppointmentList = (props) => {
 
       const fetchPost = async () => {
         const response = await fetch(
-          globalUrls.APPOINTMENT_CANCEL_URL,
+          globalUrls.BASE_URL + "/api/Appointment/",
           requestOptions
         );
 

@@ -52,7 +52,7 @@ const Services = (props) => {
 
   const sortSalons = (sort) => {
     setSelectedSort(sort);
-    
+
     if (sort === "name") {
       setSalonsByType(
         [...salons].sort((a, b) => a[sort].localeCompare(b[sort]))
@@ -195,7 +195,6 @@ const Services = (props) => {
   };
 
   const sortedAndSearchedPosts = useMemo(() => {
-
     if (searchQuery !== null) {
       return salonsByType.filter((salon) =>
         salon.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -205,7 +204,6 @@ const Services = (props) => {
     }
   }, [searchQuery, salons, salonsByType]);
 
-
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
@@ -213,23 +211,21 @@ const Services = (props) => {
     const controller = new AbortController();
 
     const fetchPost = async () => {
-      try{
-      const response = await axiosPrivate.get(
-        "/api/Salons", {
-          signal:controller.signal
+      try {
+        const response = await axiosPrivate.get("/api/Salons", {
+          signal: controller.signal,
         });
-      
-      const data = await response.data;
-      isMounted && setSalons(data);
-      isMounted && setSalonsByType(data);
 
-      }catch(err){
+        const data = await response.data;
+        isMounted && setSalons(data);
+        isMounted && setSalonsByType(data);
+      } catch (err) {
         console.error(err);
       }
     };
 
     fetchPost();
-    
+
     if (serviceData.state !== null) {
       if (
         serviceData.state.search !== null &&
@@ -247,7 +243,7 @@ const Services = (props) => {
     return () => {
       isMounted = false;
       controller.abort();
-  }
+    };
   }, []);
   useEffect(() => {
     if (
