@@ -276,6 +276,11 @@
     font-size: 3.2rem;
     font-weight: 700;
     margin-bottom: 3.2rem;
+
+    &--secondary {
+      font-size: 2rem;
+      color: $color-grey-dark;
+    }
   }
 
   &__error {
@@ -325,7 +330,7 @@
       font: inherit;
       font-size: 1.8rem;
       padding: 1.2rem 4.8rem;
-      width: 100%;
+      width: 70%;
       border-radius: 12px;
       border: 1px solid $color-grey-dark;
       transition: $transition-normal;

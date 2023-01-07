@@ -81,6 +81,8 @@ const Settings = (props) => {
       <form className="settings" onSubmit={submitHandle}>
         <p className="settings__title">Settings</p>
 
+        <p className="settings__title--secondary">Update your information</p>
+
         <div className="settings__container">
           {errors.name.dirty && errors.name.error ? (
             <p className="settings__error">{errors.name.message}</p>
