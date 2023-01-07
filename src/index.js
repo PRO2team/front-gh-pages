@@ -6,9 +6,9 @@ import { AuthProvider } from "./components/context/AuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <AuthProvider>
       <App />
     </AuthProvider>
-  </BrowserRouter>
+  </HashRouter>
 );

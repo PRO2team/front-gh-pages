@@ -30,34 +30,35 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/business" element={<ForBussiness />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/faq" element={<Faq />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="unauthorized" element={<Unauthorized />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/business" element={<ForBussiness />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="unauthorized" element={<Unauthorized />} />
 
-        {/* Need login */}
-        <Route element={<PersistLogin />}>
-          <Route
-            element={<RequireAuth allowedRoles={[roles.user, roles.admin]} />}
-          >
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/checkout/confirmation" element={<Confirmation />} />
-            <Route path="/service/:id" element={<Service />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/service" element={<Service />} />
+          {/* Need login */}
+          <Route element={<PersistLogin />}>
+            <Route
+              element={<RequireAuth allowedRoles={[roles.user, roles.admin]} />}
+            >
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/checkout/confirmation" element={<Confirmation />} />
+              <Route path="/service/:id" element={<Service />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/service" element={<Service />} />
+            </Route>
+
+            <Route element={<RequireAuth allowedRoles={[roles.user]} />}>
+              <Route path="profile" element={<Profile />} />
+            </Route>
           </Route>
-
-          <Route element={<RequireAuth allowedRoles={[roles.user]} />}>
-            <Route path="profile" element={<Profile />} />
-          </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      
       <Footer />
     </>
   );
