@@ -22,6 +22,7 @@
     "react-scripts": "^4.0.3",
     "sass": "^1.56.1"
   },
+  "proxy": "https://PRO2team.github.io:1433",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
