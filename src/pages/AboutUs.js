@@ -15,7 +15,7 @@ const AboutUs = () => {
     <div className="about_container">
       <div className="main_information">
         <div className="image">
-        <img src={`${process.env.PUBLIC_URL}/about.jpg`} />
+          <img src={`${process.env.PUBLIC_URL}/about.png`} />
         </div>
 
         <div className="description">
@@ -96,8 +96,10 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="about__image">
-          <img src={`${process.env.PUBLIC_URL}/about_information.jpg`}
-          className="about__image__img"/>
+          <img
+            src={`${process.env.PUBLIC_URL}/about_information.jpg`}
+            className="about__image__img"
+          />
         </div>
       </div>
     </div>
