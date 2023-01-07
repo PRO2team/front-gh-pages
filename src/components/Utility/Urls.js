@@ -1,4 +1,4 @@
-const BASE_URL = "https://pro2team.github.io";
+const BASE_URL = "https://bebraapi.azurewebsites.net";
 
 export default {
   BASE_URL: BASE_URL,
