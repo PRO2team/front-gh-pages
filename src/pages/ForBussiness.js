@@ -75,7 +75,7 @@ const ForBussiness = () => {
         <h1 className="business_headtitle">FOR BUSSINES</h1>
         <div
           className="business_footage col-9"
-          style={{ backgroundImage: `url('/business.png')` }}
+          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/business.png)` }}
         ></div>
         <div className="application col-9">
           <h2 className="business_title col-5">APPLICATION FORM</h2>
