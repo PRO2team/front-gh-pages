@@ -212,9 +212,9 @@ const Services = (props) => {
 
     const fetchPost = async () => {
       try {
-        const response = await axiosPrivate.get("/api/Salons", {
-          signal: controller.signal,
-        });
+        const response = await fetch("/api/Salons"
+          
+        );
 
         const data = await response.data;
         isMounted && setSalons(data);

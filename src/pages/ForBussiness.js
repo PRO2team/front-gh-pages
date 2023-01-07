@@ -73,10 +73,10 @@ const ForBussiness = () => {
     <div className="container col-12">
       <div className="business_container col-12">
         <h1 className="business_headtitle">FOR BUSSINES</h1>
-        <div
+        <img
           className="business_footage col-9"
-          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/business.png)` }}
-        ></div>
+          src = {`${process.env.PUBLIC_URL}/business.png`} /> 
+        
         <div className="application col-9">
           <h2 className="business_title col-5">APPLICATION FORM</h2>
           <div className="input_form col-11">
