@@ -6,24 +6,23 @@ import { useState, useEffect } from "react";
 import Review from "./Review";
 
 const Reviews = (props) => {
-  const[property, setProperty] = useState("");
+  const [property, setProperty] = useState("");
 
   useEffect(() => {
     setProperty(props.item);
   }, [props]);
-  
-  
+
   return (
-<>
-    <div className="reviews">
-      <h3 className="reviews__title">Reviews</h3>
-      <div className="reviews__container margin-bottom-big">
-        {props.item.reviews.map((review) => {
-          return <Review review={review} />;
-        })}
+    <>
+      <div className="reviews">
+        <h3 className="reviews__title">Reviews</h3>
+        <div className="reviews__container margin-bottom-big">
+          {props.item.reviews.map((review) => {
+            return <Review key={review.reviewID} review={review} />;
+          })}
+        </div>
       </div>
-    </div>
-</>
+    </>
   );
 };
 
