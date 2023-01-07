@@ -148,7 +148,7 @@ const Support = () => {
               name="message"
               placeholder="Write your appeal as accurately and clearly as possible, you also need to 
             indicate the number of the meeting and its time to fully identify the problem"
-              style={{ "font-size": "1.6rem" }}
+              style={{ fontSize: "1.6rem" }}
             />
             <div>{errors?.message && <p>{errors?.message?.message}</p>}</div>
 
