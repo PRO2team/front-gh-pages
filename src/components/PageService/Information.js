@@ -84,7 +84,6 @@ const Information = (props) => {
       setIsLiked(true);
     } else if (response.status === 409) {
       setIsLiked(false);
-      //alert("Salon has already been added to your wishlist")
     }
   }
 
@@ -118,7 +117,7 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalUrls.BASE_URL + "/api/Accounts/favourites/" + userId + "/favourites"
+      globalUrls.BASE_URL + "/api/Accounts/" + userId + "/favourites"
     );
 
     const data = await response.json();

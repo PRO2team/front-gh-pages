@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import { useOutletContext, useParams, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import About from "../components/PageService/About";
 import Facilities from "../components/PageService/Facilities";
 import Information from "../components/PageService/Information";
@@ -14,15 +14,12 @@ const Service = () => {
   const { id } = useParams();
 
   const [service, setService] = useState("");
-  let salon;
 
   console.log(service);
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-
-    //console.log(service);
 
     getSalon(id);
 
