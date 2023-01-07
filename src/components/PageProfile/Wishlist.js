@@ -20,8 +20,7 @@ const Wishlist = () => {
       };
 
       const response = await fetch(
-        globalUrls.BASE_URL + "/api/Accounts/",
-        +userId + "/favourites"
+        globalUrls.BASE_URL + "/api/Accounts/" + userId + "/favourites"
       );
 
       const data = await response.json();
