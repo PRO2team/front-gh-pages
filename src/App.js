@@ -37,7 +37,7 @@ function App() {
           <Route path="/*" element={<NotFound />} />
           <Route path="/business" element={<ForBussiness />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/faq" element={<Faq />} />
+          <Route path="front-gh-pages/faq" element={<Faq />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
