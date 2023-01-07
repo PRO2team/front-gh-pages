@@ -55,6 +55,9 @@ const Register = () => {
       );
       const data = await response.json();
 
+      console.log(response);
+      console.log(data);
+
       if (response.status === 200) {
         navigate("/");
       }
