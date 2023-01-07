@@ -22,7 +22,7 @@ const Confirmation = () => {
         </p>
 
         <img
-          src="/confirm.png"
+          src={`${process.env.PUBLIC_URL}/confirm.png`}
           className="confirmation__container__image"
           alt="confirmation"
         />

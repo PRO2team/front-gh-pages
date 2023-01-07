@@ -20,7 +20,11 @@ const Navbar = () => {
   return (
     <div className="nav">
       <Link to="/">
-        <img src="logo.png" className="nav__logo" alt="logo" />
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          className="nav__logo"
+          alt="logo"
+        />
       </Link>
       <ion-icon
         name="menu-outline"

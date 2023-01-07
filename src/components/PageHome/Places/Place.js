@@ -16,7 +16,7 @@ const Place = (props) => {
       }}
     >
       <div className="place">
-        <img className="place__img" alt="Warsaw" src={props.source}></img>
+        <img className="place__img" alt="City" src={props.source}></img>
 
         <div className="place__title-container">
           <p className="place__title">{props.name}</p>

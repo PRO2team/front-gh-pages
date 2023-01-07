@@ -59,33 +59,31 @@ const Profile = () => {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
   let userId = auth?.user;
-  const[ userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-
-    async function getUser (userId) {
-        
+    async function getUser(userId) {
       const userGetRequest = {
         method: "GET",
-        headers: { "Content-type": "application/json" }}
-  
+        headers: { "Content-type": "application/json" },
+      };
+
       const response = await fetch(
-                "https://localhost:7229/api/Accounts/" + userId);
-  
+        "https://localhost:7229/api/Accounts/" + userId
+      );
+
       const data = await response.json();
       console.log(data);
-      console.log(response.status)
-  
-      if (response.status === 200) {
-          console.log(response.status);
-          console.log(data);  
-          setUserData(data);     
-      }   
-  }
-  getUser(userId);
+      console.log(response.status);
 
+      if (response.status === 200) {
+        console.log(response.status);
+        console.log(data);
+        setUserData(data);
+      }
+    }
+    getUser(userId);
   }, []);
-  
 
   const logOut = async () => {
     setAuth({});
@@ -160,8 +158,14 @@ const Profile = () => {
   if (tabID === 0) {
     profileComponent = (
       <div className="profile__info">
-        <img src="./user.jpg" alt="user_photo" className="profile__img"></img>
-        <p className="profile__name">{userData.name } {userData.surname}</p>
+        <img
+          src={`${process.env.PUBLIC_URL}/user.jpg`}
+          alt="user_photo"
+          className="profile__img"
+        ></img>
+        <p className="profile__name">
+          {userData.name} {userData.surname}
+        </p>
         <p className="profile__phone">{userData.phoneNumber}</p>
         <button onClick={logOut} className="profile__button">
           Log out

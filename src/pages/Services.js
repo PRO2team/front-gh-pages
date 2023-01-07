@@ -241,25 +241,23 @@ const Services = (props) => {
     const controller = new AbortController();
 
     const fetchPost = async () => {
-      try{
-      const response = await axiosPrivate.get(
-        "/api/Salons", {
-          signal:controller.signal
+      try {
+        const response = await axiosPrivate.get("/api/Salons", {
+          signal: controller.signal,
         });
-      
-      const data = await response.data;
-      console.log(data);
-      isMounted && setSalons(data);
-      isMounted && setSalonsByType(data);
 
-      }catch(err){
+        const data = await response.data;
+        console.log(data);
+        isMounted && setSalons(data);
+        isMounted && setSalonsByType(data);
+      } catch (err) {
         console.error(err);
       }
     };
 
     console.log(serviceData);
     fetchPost();
-    
+
     if (serviceData.state !== null) {
       if (
         serviceData.state.search !== null &&
@@ -279,7 +277,7 @@ const Services = (props) => {
     return () => {
       isMounted = false;
       controller.abort();
-  }
+    };
   }, []);
   useEffect(() => {
     if (
@@ -328,7 +326,7 @@ const Services = (props) => {
           <ServicesFiltered salons={sortedAndSearchedPosts} />
         ) : (
           <img
-            src="loading.gif"
+            src={`${process.env.PUBLIC_URL}/loading.gif`}
             alt="loading animation"
             className={style.loading_img}
           ></img>
