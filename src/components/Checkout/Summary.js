@@ -71,7 +71,7 @@ const Summary = ({ services, note, date }) => {
 
   async function fetchPost(fullname) {
     const response = await fetch(
-      globalUrls.BASE_URL + "/api/Appointments/list",
+      globalUrls.APPOINTMENT_LIST_URL,
       requestRef.current
     );
 

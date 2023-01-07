@@ -7,7 +7,7 @@ const History = (props) => {
     <div className="appointments">
       {props.appointments.map((appointment) => (
         <Appointment
-          key={appointment.id}
+          key={appointment.appointmentID}
           item={appointment}
           onCommentHandle={() => commentHandle(appointment)}
           isHistory={props.isHistory}

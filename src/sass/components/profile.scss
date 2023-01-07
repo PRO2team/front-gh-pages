@@ -110,6 +110,7 @@
     gap: 9.6rem;
     padding: 2.4rem;
     align-items: center;
+    width:100%;
 
     &:not(:last-child) {
       border-bottom: 1px solid rgba($color-grey-dark-3, 0.1);
@@ -117,6 +118,7 @@
 
     &__title {
       font-size: 1.8rem;
+      width:20rem;
     }
 
     &__time {
@@ -125,6 +127,7 @@
       font-size: 1.8rem;
       color: $primary-color-dark;
       font-weight: 700;
+      width:20rem;
     }
 
     &__cost {
@@ -174,6 +177,8 @@
 .wishlist {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 2.4rem;
 
   &__container {
@@ -182,6 +187,7 @@
     justify-content: center;
     align-items: center;
     padding: 2.4rem;
+    width:80rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid rgba($color-grey-dark-3, 0.1);
@@ -190,6 +196,7 @@
 
   &__title {
     font-size: 1.8rem;
+    width:30rem;
   }
 
   &__info {
@@ -198,11 +205,13 @@
     gap: 0.5rem;
     font-size: 1.2rem;
     color: $color-grey-dark-2;
+    idth:20rem;
   }
 
   &__buttons {
     display: flex;
     gap: 1.2rem;
+    width:20rem;
   }
 
   &__book {

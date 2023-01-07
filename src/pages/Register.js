@@ -49,14 +49,8 @@ const Register = () => {
     };
 
     const fetchPost = async () => {
-      const response = await fetch(
-        globalUrls.BASE_URL + "/api/Accounts/register",
-        requestOptions
-      );
+      const response = await fetch(globalUrls.REGISTER_URL, requestOptions);
       const data = await response.json();
-
-      console.log(response);
-      console.log(data);
 
       if (response.status === 200) {
         navigate("/");

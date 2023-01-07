@@ -30,10 +30,7 @@ const Footer = () => {
   const fetchPost = async (data) => {
     const request = fetchPostRequest(data);
 
-    const response = await fetch(
-      globalUrls.BASE_URL + "/api/Contact/subscription",
-      request
-    );
+    const response = await fetch(globalUrls.CONTACT__SUBSCRIPTION_URL, request);
 
     const dataValue = await response.text();
   };
@@ -93,9 +90,7 @@ const Footer = () => {
                   Create owner account
                 </Link>
               </li>
-              {/* <li>
-                <Link className="sitemap__item">In the future...</Link>
-              </li>  */}
+
             </ul>
           </div>
           <div className="sitemap__category">

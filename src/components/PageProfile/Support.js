@@ -1,13 +1,14 @@
-import React from "react";
+import React from 'react';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import globalUrls from "../components/Utility/Urls";
+import globalUrls from '../Utility/Urls';
 
-import "../sass/components/contact.scss";
 
-const Contact = () => {
-  const [isSubmited, setIsSubmited] = useState(false);
+const Support = () => {
+
+
+    const [isSubmited, setIsSubmited] = useState(false);
   const {
     register,
     formState: { errors },
@@ -56,9 +57,10 @@ const Contact = () => {
     }
   };
 
-  return (
-    <div className="contact_container">
-      <h1 class="contact__title">Contact Us</h1>
+    return (
+        <div>
+            <div className="contact_container">
+      <h1 class="contact__title">Support Form</h1>
 
       <form class="contact__form" onSubmit={handleSubmit(submitForm)}>
         <div className="input__fullname">
@@ -133,7 +135,7 @@ const Contact = () => {
           </label>
           <textarea
             {...register("message", {
-              required: "Message is required",
+              required: "Support message is required",
               maxLength: {
                 value: 5000,
                 message: "Maximum allowed legth is 5000",
@@ -144,7 +146,9 @@ const Contact = () => {
             className="textarea_input"
             type="text"
             name="message"
-            placeholder=""
+            placeholder="Write your appeal as accurately and clearly as possible, you also need to 
+            indicate the number of the meeting and its time to fully identify the problem"
+            style={{"font-size":"1.6rem"}}
           />
           <div>{errors?.message && <p>{errors?.message?.message}</p>}</div>
 
@@ -159,7 +163,8 @@ const Contact = () => {
         </div>
       </form>
     </div>
-  );
+        </div>
+    );
 };
 
-export default Contact;
+export default Support;

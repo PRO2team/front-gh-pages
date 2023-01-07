@@ -1,8 +1,20 @@
 import React from 'react';
 
+import { useState, useEffect } from "react";
+
+
 const Image = ({data, ...props }) => {
+    const [defaultPicture,setDefaultPicture] = useState('');
+
+    if(data===null){
+        data = defaultPicture;
+    }
 return(
-<img {...props} src={`data:image/jpeg;base64,${data}`} />
+    <>
+{(data!==null&&data!==undefined)?
+(<img {...props} src={`data:image/jpeg;base64,${data}`} />):
+(<p> </p>)}
+</>
 )
 
 }

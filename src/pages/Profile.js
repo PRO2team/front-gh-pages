@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import useAuth from "../components/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-
+import globalUrls from "../components/Utility/Urls";
 import Tab from "../components/PageProfile/Tab";
 import AppointmentList from "../components/PageProfile/AppointmentList";
 import History from "../components/PageProfile/History";
 import Wishlist from "../components/PageProfile/Wishlist";
+import Image from "../components/Utility/Image";
+import Support from "../components/PageProfile/Support";
 import Settings from "../components/PageProfile/Settings";
 
-import globalPaths from "../components/Utility/Urls";
-
 import "../sass/components/profile.scss";
+
 
 const TABS_DUMMY = [
   {
@@ -43,12 +44,17 @@ const TABS_DUMMY = [
   },
 ];
 
-const appointments = [
-  { id: 1, title: "Test", date: "2022-12-29", time: "12:30", cost: "300 zl" },
-  { id: 2, title: "Test2", date: "2022-12-30", time: "10:00", cost: "200 zl" },
-  { id: 3, title: "Test3", date: "2023-02-10", time: "10:00", cost: "200 zl" },
-  { id: 4, title: "Test4", date: "2023-01-04", time: "10:00", cost: "200 zl" },
-];
+// const appointments = [
+//   { id: 1, title: "Test", date: "2022-12-29", time: "12:30", cost: "300 zl" },
+//   { id: 2, title: "Test2", date: "2022-12-30", time: "10:00", cost: "200 zl" },
+//   { id: 3, title: "Test3", date: "2023-02-10", time: "10:00", cost: "200 zl" },
+//   { id: 4, title: "Test4", date: "2023-01-04", time: "10:00", cost: "200 zl" },
+// ];
+
+// const servicesFavourites = [
+//   { id: 1, title: "Test", address: "Ul. Koszykowa 86", number: "+48510921253" },
+//   { id: 2, title: "Tes2", address: "Ul. Koszykowa 86", number: "+48510921253" },
+// ];
 
 let AppointmentsActual = [];
 let AppointmentsOld = [];
@@ -57,31 +63,39 @@ const Profile = () => {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
   let userId = auth?.user;
-  const [userData, setUserData] = useState({});
-
+  const[ userData, setUserData] = useState({});
+  const[appointments, setAppointments] = useState([])
   useEffect(() => {
-    async function getUser(userId) {
+
+    async function getUser (userId) {
+        
       const userGetRequest = {
         method: "GET",
-        headers: { "Content-type": "application/json" },
-      };
-
+        headers: { "Content-type": "application/json" }}
+  
       const response = await fetch(
-        globalPaths.BASE_URL + "/api/Accounts/" + userId
-      );
-
+        globalUrls.ACCOUNTS_WISHLIST_URL + userId);
+  
       const data = await response.json();
-      console.log(data);
-      console.log(response.status);
-
+     
+  
       if (response.status === 200) {
-        console.log(response.status);
-        console.log(data);
-        setUserData(data);
-      }
-    }
-    getUser(userId);
+          console.log(response.status);
+          console.log(data);  
+          setUserData(data);    
+          
+      }   
+  }
+  getUser(userId);
   }, []);
+
+  useEffect(() => {
+    if(userData!==null){
+      console.log(userData)
+      setAppointments(userData.appointments);
+    }
+  }, [userData]);
+  
 
   const logOut = async () => {
     setAuth({});
@@ -115,9 +129,9 @@ const Profile = () => {
     }
 
     if (
-      o.date.split("-")[0] === dateNow.getFullYear().toString() &&
-      o.date.split("-")[1] === monthNow &&
-      o.date.split("-")[2] === dayNow
+      o.dateTo.split("-")[0] === dateNow.getFullYear().toString() &&
+      o.dateTo.split("-")[1] === monthNow &&
+      o.dateTo.split("-")[2] === dayNow
     ) {
       return true;
     }
@@ -143,9 +157,9 @@ const Profile = () => {
     }
 
     if (
-      o.date.split("-")[0] !== dateNow.getFullYear().toString() ||
-      o.date.split("-")[1] !== monthNow ||
-      o.date.split("-")[2] !== dayNow
+      o.dateTo.split("-")[0] !== dateNow.getFullYear().toString() ||
+      o.dateTo.split("-")[1] !== monthNow ||
+      o.dateTo.split("-")[2] !== dayNow
     ) {
       return true;
     }
@@ -156,14 +170,13 @@ const Profile = () => {
   if (tabID === 0) {
     profileComponent = (
       <div className="profile__info">
-        <img
-          src={`${process.env.PUBLIC_URL}/user.jpg`}
-          alt="user_photo"
-          className="profile__img"
-        ></img>
-        <p className="profile__name">
-          {userData.name} {userData.surname}
-        </p>
+        {(userData.profilePicture!==undefined&&userData.profilePicture.bytes!==null)?(
+          <>
+         <Image data={userData.profilePicture.bytes} className="profile__img" />
+         </>
+        ):(<p> Loading</p>)}
+
+        <p className="profile__name">{userData.name } {userData.surname}</p>
         <p className="profile__phone">{userData.phoneNumber}</p>
         <button onClick={logOut} className="profile__button">
           Log out
@@ -185,7 +198,7 @@ const Profile = () => {
   } else if (tabID === 2) {
     profileComponent = <Wishlist />;
   } else if (tabID === 3) {
-    profileComponent = <div>Support</div>;
+    profileComponent = <Support />;
   } else if (tabID === 4) {
     profileComponent = <Settings />;
   }

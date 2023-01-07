@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 
 import style from "../../sass/components/service.module.scss";
-
+import globalUrls from "../Utility/Urls";
 import Modal from "./Modal";
 import Image from "../Utility/Image";
 import useAuth from "../hooks/useAuth";
 
-import globalPaths from "../Utility/Urls";
-
 function getTime(time) {
+
   var date = new Date(Date.parse(time));
   if (date.getMinutes() === 0) {
     return date.getHours() + ":" + date.getMinutes() + 0;
@@ -50,8 +49,7 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalPaths.BASE_URL +
-        "/api/Accounts/favourites/" +
+      globalUrls.DELETE_FROM_WISHLIST_URL +
         userId +
         "/" +
         props.item.salonID,
@@ -72,8 +70,7 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalPaths.BASE_URL +
-        "/api/Accounts/favourites/" +
+      globalUrls.DELETE_FROM_WISHLIST_URL +
         userId +
         "/" +
         props.item.salonID,
@@ -98,8 +95,7 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalPaths.BASE_URL +
-        "/api/Accounts/favourites/" +
+      globalUrls.DELETE_FROM_WISHLIST_URL +
         userId +
         "/" +
         props.item.salonID,
@@ -120,7 +116,7 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      globalPaths.BASE_URL + "/api/Accounts/" + userId + "/favourites"
+      globalUrls.ACCOUNTS_WISHLIST_URL + userId + "/favourites"
     );
 
     const data = await response.json();
@@ -223,7 +219,7 @@ const Information = (props) => {
         openServices={openServices}
         setOpenServices={setOpenServices}
       />
-    </div>
+      </div>
   );
 };
 

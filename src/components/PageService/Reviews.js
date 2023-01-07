@@ -10,7 +10,6 @@ const Reviews = (props) => {
 
   useEffect(() => {
     setProperty(props.item);
-  console.log(property);
   }, [props]);
   
   

@@ -12,29 +12,30 @@ const Wishlist = () => {
   const [services, setServices] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function getWishlist(userId) {
-      const userGetRequest = {
-        method: "GET",
-        headers: { "Content-type": "application/json" },
-      };
+useEffect(() => {
 
-      const response = await fetch(
-        globalUrls.BASE_URL + "/api/Accounts/" + userId + "/favourites"
-      );
+  async function getWishlist (userId) {
+        
+    const userGetRequest = {
+      method: "GET",
+      headers: { "Content-type": "application/json" }}
 
-      const data = await response.json();
-      console.log(data);
-      console.log(response.status);
+    const response = await fetch(
+      globalUrls.ACCOUNTS_WISHLIST_URL + userId + "/favourites");
 
-      if (response.status === 200) {
+    const data = await response.json();
+    console.log(data);
+    console.log(response.status)
+
+    if (response.status === 200) {
         console.log(response.status);
         console.log(data);
         setServices(data);
-      }
-    }
-    getWishlist(userId);
-  }, []);
+        }       
+    }   
+getWishlist(userId);
+
+}, []);
 
   const onBookHandle = (service) => {
     navigate("/service/" + service.salonID, { state: service });
@@ -47,20 +48,14 @@ const Wishlist = () => {
       const requestOptions = {
         method: "DELETE",
         headers: { "Content-type": "application/json" },
-        body: "",
+        body: ""
       };
 
       const fetchPost = async () => {
         const response = await fetch(
-          globalUrls.BASE_URL +
-            "/api/Accounts/favourites/" +
-            userId +
-            "/" +
-            service.salonID,
+          globalUrls.DELETE_FROM_WISHLIST_URL + userId + "/" + service.salonID,
           requestOptions
         );
-
-        //const data = await response.json();
 
         if (response.status === 200) {
           const arr = services;

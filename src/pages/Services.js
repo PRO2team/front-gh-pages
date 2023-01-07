@@ -52,7 +52,7 @@ const Services = (props) => {
 
   const sortSalons = (sort) => {
     setSelectedSort(sort);
-    console.log(sort);
+    
     if (sort === "name") {
       setSalonsByType(
         [...salons].sort((a, b) => a[sort].localeCompare(b[sort]))
@@ -75,11 +75,6 @@ const Services = (props) => {
           filters.delete(event.target.value);
         }
 
-        if (filters.size) {
-          console.log("filtry");
-          console.log(filters);
-        }
-
         return {
           filters,
           salonsFiltered,
@@ -92,7 +87,6 @@ const Services = (props) => {
   useEffect(() => {
     if (state.filters.size !== 0) {
       let temp = [];
-      console.log(state.filters);
 
       if (
         state.filters.has("$") ||
@@ -102,7 +96,6 @@ const Services = (props) => {
         state.filters.forEach((filter) => {
           switch (filter) {
             case "$":
-              console.log("$");
               salons
                 .filter(
                   (salon) =>
@@ -112,7 +105,6 @@ const Services = (props) => {
               break;
 
             case "$$":
-              console.log("$$");
               salons
                 .filter(
                   (salon) =>
@@ -128,7 +120,6 @@ const Services = (props) => {
                     salon.averageCheck >= 200 && salon.averageCheck > 400
                 )
                 .map((salon) => temp.push(salon));
-              console.log("$$$");
               break;
           }
         });
@@ -150,14 +141,12 @@ const Services = (props) => {
         state.filters.forEach((filter) => {
           switch (filter) {
             case "5 stars":
-              console.log("5 star sort");
               salons
                 .filter((salon) => salon.averageRating == 5)
                 .map((salon) => temp.push(salon));
               break;
 
             case "4 stars":
-              console.log("4 star sort");
               salons
                 .filter(
                   (salon) => salon.averageRating >= 4 && salon.averageRating < 5
@@ -166,7 +155,6 @@ const Services = (props) => {
               break;
 
             case "3 and less":
-              console.log("3 star sort");
               salons
                 .filter((salon) => salon.averageRating < 4)
                 .map((salon) => temp.push(salon));
@@ -176,9 +164,6 @@ const Services = (props) => {
       }
 
       setSalonsByType([]);
-
-      console.log(temp);
-      console.log(salonsByType);
       setSalonsByType(temp);
     }
   }, [state]);
@@ -191,7 +176,6 @@ const Services = (props) => {
   const filterByTypeSalons = (filterType) => {
     if (filterType !== "All") {
       setSelectedFilterType(filterType);
-      console.log("Filter is type " + filterType);
       setSalonsByType(
         salons.filter((salon) => filterType.includes(salon.salonType))
       );
@@ -201,7 +185,6 @@ const Services = (props) => {
   };
 
   const filterByCitySalons = (filterType) => {
-    console.log("Filter is type " + filterType);
     setSalonsByType(
       salons.filter((salon) => filterType.includes(salon.address.city))
     );
@@ -211,10 +194,8 @@ const Services = (props) => {
     setSearchQuery(request);
   };
 
-  console.log(searchQuery);
-
   const sortedAndSearchedPosts = useMemo(() => {
-    //console.log(salonsByType);
+
     if (searchQuery !== null) {
       return salonsByType.filter((salon) =>
         salon.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -224,40 +205,31 @@ const Services = (props) => {
     }
   }, [searchQuery, salons, salonsByType]);
 
-  console.log(sortedAndSearchedPosts);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-    // const fetchPost = async () => {
-    //   const response = await fetch(
-    //     "https://localhost:7229/api/Salons"
-    //   );
-    //   const data = await response.json();
-    //   setSalons(data);
-    //   setSalonsByType(data);
-    // };
     let isMounted = true;
     const controller = new AbortController();
 
     const fetchPost = async () => {
-      try {
-        const response = await axiosPrivate.get("/api/Salons", {
-          signal: controller.signal,
+      try{
+      const response = await axiosPrivate.get(
+        "/api/Salons", {
+          signal:controller.signal
         });
+      
+      const data = await response.data;
+      isMounted && setSalons(data);
+      isMounted && setSalonsByType(data);
 
-        const data = await response.data;
-        console.log(data);
-        isMounted && setSalons(data);
-        isMounted && setSalonsByType(data);
-      } catch (err) {
+      }catch(err){
         console.error(err);
       }
     };
 
-    console.log(serviceData);
     fetchPost();
-
+    
     if (serviceData.state !== null) {
       if (
         serviceData.state.search !== null &&
@@ -267,17 +239,15 @@ const Services = (props) => {
       }
       if (serviceData.state.category !== null) {
         setCategoryParameter(serviceData.state.category);
-        console.log(serviceData.state.category);
       }
       if (serviceData.state.city !== null) {
         setCityParameter(serviceData.state.city);
-        console.log(serviceData.state.city);
       }
     }
     return () => {
       isMounted = false;
       controller.abort();
-    };
+  }
   }, []);
   useEffect(() => {
     if (
@@ -285,7 +255,6 @@ const Services = (props) => {
       categoryParameter !== null &&
       categoryParameter.length !== 0
     ) {
-      console.log("filtering");
       filterByTypeSalons(categoryParameter);
     }
   }, [categoryParameter, salons]);
@@ -296,7 +265,6 @@ const Services = (props) => {
       cityParameter !== null &&
       cityParameter.length !== 0
     ) {
-      console.log("filtering city");
       filterByCitySalons(cityParameter);
     }
   }, [cityParameter, salons]);

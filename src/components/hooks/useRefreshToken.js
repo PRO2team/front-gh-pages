@@ -1,4 +1,6 @@
+import axios from "../api/axios";
 import useAuth from "./useAuth";
+import { useRef, useState, useEffect } from "react";
 
 import globalUrls from "../Utility/Urls";
 
@@ -7,13 +9,9 @@ const useRefreshToken = () => {
   let temp;
   let tempAuth;
   let requestOptions;
-  console.log(auth?.login);
-  console.log(auth?.refreshToken);
-  console.log(auth);
 
   const setAuthentification = () => {
     tempAuth = JSON.parse(localStorage.getItem("auth"));
-    console.log(tempAuth);
     if (tempAuth !== null && tempAuth.length !== 0) {
       return tempAuth;
     }
@@ -43,20 +41,14 @@ const useRefreshToken = () => {
   }
 
   const refresh = async () => {
-    console.log(requestOptions);
 
-    const response = await fetch(
-      globalUrls.BASE_URL + "/api/Accounts/refresh",
-      requestOptions
-    );
+    const response = await fetch(globalUrls.REFRESH_TOKEN_URL, requestOptions);
     if (response.status === 200) {
       const data = await response.text();
       setAuth((prev) => {
         if (JSON.stringify(prev) === "{}") {
           return { ...temp, accessToken: data };
         }
-        console.log(JSON.stringify(prev));
-        console.log(data);
         return { ...prev, accessToken: data };
       });
       localStorage.setItem("acessToken", data);

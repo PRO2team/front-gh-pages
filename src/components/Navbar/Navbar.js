@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <div className="nav">
       <Link to="/">
-        <img
+      <img
           src={`${process.env.PUBLIC_URL}/logo.png`}
           className="nav__logo"
           alt="logo"

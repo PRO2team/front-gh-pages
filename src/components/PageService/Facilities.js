@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 
 const Facilities = (props) => {
-  console.log(props.item)
 
   const [clickedFacility, setClickedFacility] = useState([]);
   const [openModal, setOpenModal] = useState(false);

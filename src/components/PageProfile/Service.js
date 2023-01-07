@@ -1,6 +1,8 @@
+import Image from "../Utility/Image";
 const Service = (props) => {
   return (
     <div className="wishlist__container">
+      <Image data={props.service.salonPicture.bytes} className="profile__img" />
       <h4 className="wishlist__title">{props.service.name}</h4>
       <div className="wishlist__info">
         <p className="wishlist__address">{props.service.address.street}</p>

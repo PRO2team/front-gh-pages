@@ -15,20 +15,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("auth", JSON.stringify(auth));
   }, [auth]);
 
-  // useEffect(() => {
-  //     console.log(local)
-  //     console.log(auth)
-
-  //     if(auth===null&&local!==null){
-  //         console.log(auth);
-  //         setAuth(local);
-  //     }
-  //     if(auth.length===0&&local!==null){
-  //         console.log(auth);
-  //         setAuth(local);
-  //     }
-  // });
-
   return (
     <AuthContext.Provider value={{ auth, setAuth, persist, setPersist }}>
       {children}

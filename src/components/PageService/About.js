@@ -2,7 +2,6 @@ import style from "../../sass/components/service.module.scss";
 import Amentity from "./Amentity";
 
 const About = (props) => {
-  console.log(props.item)
   
   return (
     <div className={style.about}>
