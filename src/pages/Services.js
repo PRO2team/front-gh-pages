@@ -215,8 +215,9 @@ const Services = (props) => {
         const response = await axiosPrivate.get("/api/Salons", {
           signal: controller.signal,
         });
-
+        
         const data = await response.data;
+        console.log(data);
         isMounted && setSalons(data);
         isMounted && setSalonsByType(data);
       } catch (err) {

@@ -1,6 +1,6 @@
 import useAuth from "./useAuth";
 
-import globalUrls from "../Utility/Urls";
+import Urls from "../Utility/Urls";
 
 const useRefreshToken = () => {
   const { auth, setAuth, local } = useAuth();
@@ -40,7 +40,7 @@ const useRefreshToken = () => {
 
   const refresh = async () => {
     const response = await fetch(
-      globalUrls.BASE_URL + "/api/Accounts/refresh",
+      Urls + "/api/Accounts/refresh",
       requestOptions
     );
     if (response.status === 200) {

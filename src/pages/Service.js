@@ -20,7 +20,7 @@ const Service = () => {
 
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-    getSalon(id);
+    
 
     async function getSalon(id) {
       const userGetRequest = {
@@ -39,6 +39,7 @@ const Service = () => {
         setService(data);
       }
     }
+    getSalon(id);
   }, []);
 
   return (

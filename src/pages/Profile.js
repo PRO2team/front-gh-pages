@@ -79,7 +79,7 @@ const Profile = () => {
       setAppointments(userData.appointments);
     }
   }, [userData]);
-
+console.log(appointments);
   const logOut = async () => {
     setAuth({});
     localStorage.clear();
@@ -177,12 +177,14 @@ const Profile = () => {
   } else if (tabID === 1) {
     AppointmentsActual = appointments.filter(isToday);
     AppointmentsOld = appointments.filter(isNotToday);
-
+    console.log(AppointmentsActual);
+    console.log(AppointmentsOld);
+    
     let appointmentsActualComponent = <></>;
     if (AppointmentsActual.length === 0) {
       appointmentsActualComponent = (
         <div>
-          <h2 className="profile__title">You don't have appointments!</h2>
+          <h2 className="profile__title">You don't have future appointments!</h2>
         </div>
       );
     } else {
@@ -207,9 +209,9 @@ const Profile = () => {
     } else {
       appointmentsOldComponent = (
         <div>
-          <h2 className="profile__title">Your appointments</h2>
+          <h2 className="profile__title">Your previous appointments</h2>
           <AppointmentList
-            appointments={AppointmentsActual}
+            appointments={AppointmentsOld}
             isHistory={false}
           />
         </div>

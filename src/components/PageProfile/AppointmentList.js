@@ -7,24 +7,23 @@ const AppointmentList = (props) => {
   const [appointments, setAppointments] = useState(props.appointments);
 
   const cancelAppointmentHandle = (appointment) => {
-    const id = appointments.findIndex((o) => o.id === appointment.id);
-
+    //const id = appointments.findIndex((o) => o.appointmentID === appointment.appointmentID);
+    const id = appointment.appointmentID;
+    console.log(id);
     if (id > -1) {
       const requestOptions = {
         method: "DELETE",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify({
-          id: id,
-        }),
+        
       };
 
       const fetchPost = async () => {
         const response = await fetch(
-          globalUrls.BASE_URL + "/api/Appointment/",
+          globalUrls.BASE_URL + "/api/Appointments/" + id,
           requestOptions
         );
 
-        const data = await response.json();
+        //const data = await response.json();
 
         if (response.status === 200) {
           const arr = appointments;
