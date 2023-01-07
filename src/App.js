@@ -30,16 +30,16 @@ function App() {
     <>
       <Navbar />
       <Routes>
-          <Route path="*" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/*" element={<NotFound />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="/business" element={<ForBussiness />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="front-gh-pages/faq" element={<Faq />} />
+          <Route path="/faq" element={<Faq />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/unauthorized" element={<Unauthorized />} />
+          <Route path="unauthorized" element={<Unauthorized />} />
 
           {/* Need login */}
           <Route element={<PersistLogin />}>
@@ -57,6 +57,7 @@ function App() {
               <Route path="profile" element={<Profile />} />
             </Route>
           </Route>
+
         </Routes>
       
       <Footer />
