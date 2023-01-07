@@ -1,6 +1,4 @@
-import axios from "../api/axios";
 import useAuth from "./useAuth";
-import { useRef, useState, useEffect } from "react";
 
 import globalUrls from "../Utility/Urls";
 
@@ -47,7 +45,10 @@ const useRefreshToken = () => {
   const refresh = async () => {
     console.log(requestOptions);
 
-    const response = await fetch(globalUrls.REFRESH_TOKEN_URL, requestOptions);
+    const response = await fetch(
+      globalUrls.BASE_URL + "/api/Accounts/refresh",
+      requestOptions
+    );
     if (response.status === 200) {
       const data = await response.text();
       setAuth((prev) => {

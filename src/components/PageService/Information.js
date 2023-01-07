@@ -6,8 +6,9 @@ import Modal from "./Modal";
 import Image from "../Utility/Image";
 import useAuth from "../hooks/useAuth";
 
-function getTime(time) {
+import globalPaths from "../Utility/Urls";
 
+function getTime(time) {
   var date = new Date(Date.parse(time));
   if (date.getMinutes() === 0) {
     return date.getHours() + ":" + date.getMinutes() + 0;
@@ -49,7 +50,8 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      "https://localhost:7229/api/Accounts/favourites/" +
+      globalPaths.BASE_URL +
+        "/api/Accounts/favourites/" +
         userId +
         "/" +
         props.item.salonID,
@@ -70,7 +72,8 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      "https://localhost:7229/api/Accounts/favourites/" +
+      globalPaths.BASE_URL +
+        "/api/Accounts/favourites/" +
         userId +
         "/" +
         props.item.salonID,
@@ -95,7 +98,8 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      "https://localhost:7229/api/Accounts/favourites/" +
+      globalPaths.BASE_URL +
+        "/api/Accounts/favourites/" +
         userId +
         "/" +
         props.item.salonID,
@@ -116,7 +120,7 @@ const Information = (props) => {
     };
 
     const response = await fetch(
-      "https://localhost:7229/api/Accounts/" + userId + "/favourites"
+      globalPaths.BASE_URL + "/api/Accounts/" + userId + "/favourites"
     );
 
     const data = await response.json();
@@ -219,7 +223,7 @@ const Information = (props) => {
         openServices={openServices}
         setOpenServices={setOpenServices}
       />
-      </div>
+    </div>
   );
 };
 

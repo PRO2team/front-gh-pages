@@ -38,7 +38,10 @@ const ForBussiness = () => {
   const fetchPost = async (data) => {
     const request = fetchPostRequest(data);
 
-    const response = await fetch(globalUrls.CONTACT_APPLICATION_URL, request);
+    const response = await fetch(
+      globalUrls.BASE_URL + "/api/Contact/application",
+      request
+    );
 
     const dataValue = await response.text();
     if (response.status === 200) {

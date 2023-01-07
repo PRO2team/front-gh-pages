@@ -49,7 +49,10 @@ const Register = () => {
     };
 
     const fetchPost = async () => {
-      const response = await fetch(globalUrls.REGISTER_URL, requestOptions);
+      const response = await fetch(
+        globalUrls.BASE_URL + "/api/Accounts/register",
+        requestOptions
+      );
       const data = await response.json();
 
       if (response.status === 200) {

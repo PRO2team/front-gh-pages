@@ -8,6 +8,8 @@ import History from "../components/PageProfile/History";
 import Wishlist from "../components/PageProfile/Wishlist";
 import Settings from "../components/PageProfile/Settings";
 
+import globalPaths from "../components/Utility/Urls";
+
 import "../sass/components/profile.scss";
 
 const TABS_DUMMY = [
@@ -65,7 +67,7 @@ const Profile = () => {
       };
 
       const response = await fetch(
-        "https://localhost:7229/api/Accounts/" + userId
+        globalPaths.BASE_URL + "/api/Accounts/" + userId
       );
 
       const data = await response.json();
