@@ -60,12 +60,12 @@ const Support = () => {
   return (
     <div>
       <div className="contact_container">
-        <h1 class="contact__title">Support Form</h1>
+        <h1 className="contact__title">Support Form</h1>
 
-        <form class="contact__form" onSubmit={handleSubmit(submitForm)}>
+        <form className="contact__form" onSubmit={handleSubmit(submitForm)}>
           <div className="input__fullname">
-            <div class="input_name">
-              <label for="name" className="input_label">
+            <div className="input_name">
+              <label htmlFor="name" className="input_label">
                 Name
               </label>
               <input
@@ -84,8 +84,8 @@ const Support = () => {
               <div>{errors?.name && <p>{errors?.name?.message}</p>}</div>
             </div>
 
-            <div class="input_name">
-              <label for="surname" className="input_label">
+            <div className="input_name">
+              <label htmlFor="surname" className="input_label">
                 Surname
               </label>
               <input
@@ -106,7 +106,7 @@ const Support = () => {
             </div>
           </div>
           <div className="input__message">
-            <label for="email" className="input_label">
+            <label htmlFor="email" className="input_label">
               Email
             </label>
             <input
@@ -130,7 +130,7 @@ const Support = () => {
             />
             <div>{errors?.email && <p>{errors?.email?.message}</p>}</div>
 
-            <label for="message" className="input_label">
+            <label htmlFor="message" className="input_label">
               Message
             </label>
             <textarea
