@@ -31,14 +31,18 @@ const AppointmentList = (props) => {
       };
 
       fetchPost();
+
+      window.location.reload();
     }
   };
+
+  console.log(appointments);
 
   return (
     <div className="appointments">
       {appointments.map((appointment) => (
         <Appointment
-          key={appointment.id}
+          key={appointment.appointmentID}
           item={appointment}
           onCancelHandle={() => cancelAppointmentHandle(appointment)}
           isHistory={props.isHistory}
