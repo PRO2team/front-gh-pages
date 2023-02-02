@@ -75,10 +75,9 @@ const Profile = () => {
   }, []);
 
   useEffect(() => {
-    if (userData !== null) {
-      setAppointments(userData.appointments);
-    }
+    setAppointments(userData.appointments);
   }, [userData]);
+
   const logOut = async () => {
     setAuth({});
     localStorage.clear();
@@ -91,64 +90,53 @@ const Profile = () => {
     setTabID(id);
   };
 
+  const filterPreviousAppointment = (o) => {
+    const dateNow = new Date();
+
+    const dateWithTimeSplit = o.dateFrom.split("T");
+    const dateSplit = dateWithTimeSplit[0];
+    const timeSplit = dateWithTimeSplit[1];
+
+    let month = +dateSplit.split("-")[1];
+
+    const dateToAppointment = new Date(
+      dateSplit.split("-")[0],
+      month,
+      dateSplit.split("-")[2],
+      timeSplit.split(":")[0],
+      timeSplit.split(":")[1]
+    );
+
+    if (dateNow.getTime() > dateToAppointment.getTime()) {
+      return true;
+    }
+    return false;
+  };
+
+  const filterFutureAppointment = (o) => {
+    const dateNow = new Date();
+
+    const dateWithTimeSplit = o.dateFrom.split("T");
+    const dateSplit = dateWithTimeSplit[0];
+    const timeSplit = dateWithTimeSplit[1];
+
+    let month = +dateSplit.split("-")[1];
+
+    const dateToAppointment = new Date(
+      dateSplit.split("-")[0],
+      month,
+      dateSplit.split("-")[2],
+      timeSplit.split(":")[0],
+      timeSplit.split(":")[1]
+    );
+
+    if (dateNow.getTime() < dateToAppointment.getTime()) {
+      return true;
+    }
+    return false;
+  };
+
   let profileComponent;
-
-  const isToday = (o) => {
-    const dateNow = new Date();
-
-    let monthNow = dateNow.getMonth() + 1;
-    if (monthNow < 10) {
-      monthNow = "0" + monthNow.toString();
-    } else {
-      monthNow = monthNow.toString();
-    }
-
-    let dayNow = dateNow.getDay() + 1;
-    if (dayNow < 10) {
-      dayNow = "0" + dayNow.toString();
-    } else {
-      dayNow = dayNow.toString();
-    }
-
-    if (
-      o.dateTo.split("-")[0] === dateNow.getFullYear().toString() &&
-      o.dateTo.split("-")[1] === monthNow &&
-      o.dateTo.split("-")[2] === dayNow
-    ) {
-      return true;
-    }
-
-    return false;
-  };
-
-  const isNotToday = (o) => {
-    const dateNow = new Date();
-
-    let monthNow = dateNow.getMonth() + 1;
-    if (monthNow < 10) {
-      monthNow = "0" + monthNow.toString();
-    } else {
-      monthNow = monthNow.toString();
-    }
-
-    let dayNow = dateNow.getDay() + 1;
-    if (dayNow < 10) {
-      dayNow = "0" + dayNow.toString();
-    } else {
-      dayNow = dayNow.toString();
-    }
-
-    if (
-      o.dateTo.split("-")[0] !== dateNow.getFullYear().toString() ||
-      o.dateTo.split("-")[1] !== monthNow ||
-      o.dateTo.split("-")[2] !== dayNow
-    ) {
-      return true;
-    }
-
-    return false;
-  };
-
   if (tabID === 0) {
     profileComponent = (
       <div className="profile__info">
@@ -174,16 +162,18 @@ const Profile = () => {
       </div>
     );
   } else if (tabID === 1) {
-    AppointmentsActual = appointments.filter(isToday);
-    AppointmentsOld = appointments.filter(isNotToday);
-    // console.log(AppointmentsActual);
-    // console.log(AppointmentsOld);
-    
+    if (appointments != null) {
+      AppointmentsActual = appointments.filter(filterFutureAppointment);
+      AppointmentsOld = appointments.filter(filterPreviousAppointment);
+    }
+
     let appointmentsActualComponent = <></>;
     if (AppointmentsActual.length === 0) {
       appointmentsActualComponent = (
         <div>
-          <h2 className="profile__title">You don't have future appointments!</h2>
+          <h2 className="profile__title">
+            You don't have future appointments!
+          </h2>
         </div>
       );
     } else {
@@ -202,17 +192,16 @@ const Profile = () => {
     if (AppointmentsOld.length === 0) {
       appointmentsOldComponent = (
         <div>
-          <h2 className="profile__title">You have never made appointments!</h2>
+          <h2 className="profile__title">
+            You don't have any old appointments!
+          </h2>
         </div>
       );
     } else {
       appointmentsOldComponent = (
         <div>
           <h2 className="profile__title">Your previous appointments</h2>
-          <AppointmentList
-            appointments={AppointmentsOld}
-            isHistory={false}
-          />
+          <AppointmentList appointments={AppointmentsOld} isHistory={false} />
         </div>
       );
     }
