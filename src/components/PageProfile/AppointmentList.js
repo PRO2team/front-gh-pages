@@ -28,14 +28,28 @@ const AppointmentList = (props) => {
       }
     };
 
+    const requestOptionsGet = {
+      method: "GET",
+      headers: { "Content-type": "application/json" },
+    };
+
+    const fetchGetAppointments = async () => {
+      const response = await fetch(
+        globalUrls.BASE_URL + "/api/Accounts/" + props.userId + "/appointments",
+        requestOptionsGet
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setAppointments(data);
+      } else {
+        throw new Error("Data coud not be fetched!");
+      }
+    };
+
     fetchPost().then((res) => {
-      const arr = appointments;
-
-      arr.splice(id, 1);
-
-      setAppointments([...arr]);
-
-      window.location.reload();
+      fetchGetAppointments();
     });
   };
 

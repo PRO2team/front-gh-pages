@@ -183,6 +183,7 @@ const Profile = () => {
           <AppointmentList
             appointments={AppointmentsActual}
             isHistory={false}
+            userId={userId}
           />
         </div>
       );
@@ -201,7 +202,11 @@ const Profile = () => {
       appointmentsOldComponent = (
         <div>
           <h2 className="profile__title">Your previous appointments</h2>
-          <AppointmentList appointments={AppointmentsOld} isHistory={true} />
+          <AppointmentList
+            appointments={AppointmentsOld}
+            isHistory={true}
+            userId={userId}
+          />
         </div>
       );
     }
