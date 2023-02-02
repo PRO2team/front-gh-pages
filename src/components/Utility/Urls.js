@@ -1,4 +1,4 @@
-const BASE_URL = "https://bebraapi.azurewebsites.net";
+const BASE_URL = "https://bebra.azurewebsites.net";
 
 export default {
   BASE_URL: BASE_URL,

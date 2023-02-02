@@ -26,6 +26,9 @@
 }
 
 .business_footage{
+    display:flex;
+    justify-items: center;
+    align-items: center;
     height:700px;
     //background-image:url('/business.png'); 
     background-size: cover;

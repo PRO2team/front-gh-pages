@@ -40,7 +40,7 @@ const useRefreshToken = () => {
 
   const refresh = async () => {
     const response = await fetch(
-      Urls + "/api/Accounts/refresh",
+      Urls.BASE_URL + "/api/Accounts/refresh",
       requestOptions
     );
     if (response.status === 200) {

@@ -79,7 +79,6 @@ const Profile = () => {
       setAppointments(userData.appointments);
     }
   }, [userData]);
-console.log(appointments);
   const logOut = async () => {
     setAuth({});
     localStorage.clear();
@@ -177,8 +176,8 @@ console.log(appointments);
   } else if (tabID === 1) {
     AppointmentsActual = appointments.filter(isToday);
     AppointmentsOld = appointments.filter(isNotToday);
-    console.log(AppointmentsActual);
-    console.log(AppointmentsOld);
+    // console.log(AppointmentsActual);
+    // console.log(AppointmentsOld);
     
     let appointmentsActualComponent = <></>;
     if (AppointmentsActual.length === 0) {
