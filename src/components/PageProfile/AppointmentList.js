@@ -34,8 +34,6 @@ const AppointmentList = (props) => {
     }
   };
 
-  console.log(appointments);
-
   return (
     <div className="appointments">
       {appointments.map((appointment) => (

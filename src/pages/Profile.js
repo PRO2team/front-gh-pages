@@ -201,7 +201,7 @@ const Profile = () => {
       appointmentsOldComponent = (
         <div>
           <h2 className="profile__title">Your previous appointments</h2>
-          <AppointmentList appointments={AppointmentsOld} isHistory={false} />
+          <AppointmentList appointments={AppointmentsOld} isHistory={true} />
         </div>
       );
     }
