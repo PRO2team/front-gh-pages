@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Appointment from "./Appointment";
 import globalUrls from "../Utility/Urls";
+import { useEffect } from "react";
 
 const AppointmentList = (props) => {
   const [appointments, setAppointments] = useState(props.appointments);
@@ -9,34 +10,34 @@ const AppointmentList = (props) => {
   const cancelAppointmentHandle = (appointment) => {
     const id = appointment.appointmentID;
 
-    if (id > -1) {
-      const requestOptions = {
-        method: "DELETE",
-        headers: { "Content-type": "application/json" },
-      };
+    const requestOptions = {
+      method: "DELETE",
+      headers: { "Content-type": "application/json" },
+    };
 
-      const fetchPost = async () => {
-        const response = await fetch(
-          globalUrls.BASE_URL + "/api/Appointments/" + id,
-          requestOptions
-        );
+    const fetchPost = async () => {
+      const response = await fetch(
+        globalUrls.BASE_URL + "/api/Appointments/" + id,
+        requestOptions
+      );
 
-        if (response.status === 200) {
-          const arr = appointments;
+      if (response.ok) {
+        return response;
+      } else {
+        throw new Error("Data coud not be fetched!");
+      }
+    };
 
-          arr.splice(id, 1);
+    fetchPost().then((res) => {
+      const arr = appointments;
 
-          setAppointments([...arr]);
-        }
-      };
+      arr.splice(id, 1);
 
-      fetchPost();
+      setAppointments([...arr]);
 
       window.location.reload();
-    }
+    });
   };
-
-  console.log(appointments);
 
   return (
     <div className="appointments">
